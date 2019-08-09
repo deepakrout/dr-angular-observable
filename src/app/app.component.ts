@@ -14,7 +14,13 @@ export class AppComponent implements OnInit {
     of(1,2,3,4,5,6).pipe(
       tap(item => console.log(`Original item ${item}`)),
       map( item => item * 2 ),
-      tap(item => console.log(`Transfermed item ${item}`))
+      tap(item => console.log(`Transfermed item ${item}`)),
+      map(item => {
+        if (item === 0){
+          throw new Error(`Zero Detected ${item}`);
+        }
+        return item;
+      })
     ).subscribe(
       item => {console.log(`Next value is ${item}`)},
       err => {console.log(`Error is ${err}`)},
