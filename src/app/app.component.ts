@@ -11,9 +11,19 @@ export class AppComponent implements OnInit {
   name = 'Angular';
 
   ngOnInit () {
-    of(1,2,3,4,5,6).subscribe(console.log)
+    of(1,2,3,4,5,6).pipe(
+      tap(item => console.log(`Original item ${item}`)),
+      map( item => item * 2 ),
+      tap(item => console.log(`Transfermed item ${item}`))
+    ).subscribe(
+      item => {console.log(`Next value is ${item}`)},
+      err => {console.log(`Error is ${err}`)},
+      ()=>{ console.log(`Stream Completed`) }
+    )
 
-    from(['Hello','Hi', 'Namaste']).subscribe(
+
+    from(['Hello','Hi', 'Namaste'])
+    .subscribe(
       item => {console.log(`Next value is ${item}`)},
       err => {console.log(`Error is ${err}`)},
       ()=>{ console.log(`Stream Completed`) }
