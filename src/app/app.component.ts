@@ -27,6 +27,13 @@ export class AppComponent implements OnInit {
       ()=>{ console.log(`Stream Completed`) }
     )
 
+    from([3,4,5,6,8])
+    .pipe(map(i => i*4))
+    .subscribe(
+      item => {console.log(`Next value is ${item}`)},
+      err => {console.log(`Error is ${err}`)},
+      ()=>{ console.log(`Stream Completed`) }
+    )
 
     from(['Hello','Hi', 'Namaste'])
     .subscribe(
