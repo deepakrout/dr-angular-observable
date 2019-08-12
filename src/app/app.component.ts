@@ -28,7 +28,11 @@ export class AppComponent implements OnInit {
     )
 
     from([3,4,5,6,8])
-    .pipe(map(i => i*4))
+    .pipe( 
+      tap(i => console.log(`Value before map ${i}`)),
+      map(i => i*4),
+      tap(i => console.log(`Value after map ${i}`))
+     )
     .subscribe(
       item => {console.log(`Next value is ${item}`)},
       err => {console.log(`Error is ${err}`)},
